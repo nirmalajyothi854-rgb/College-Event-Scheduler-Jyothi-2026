@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ event.name }} - Schedule</title>
+
+</head>
+
+<body>
+
+    <h1>📅 {{ event.name }}</h1>
+
+    <p>
+        📅 Date: {{ event.date }}
+    </p>
+
+    <p>
+        📍 Venue: {{ event.venue }}
+    </p>
+
+    <p>
+        ⏰ Event Time:
+        {{ event.start_time }} - {{ event.end_time }}
+    </p>
+
+    <hr>
+
+    <h2>🗓️ Event Schedule</h2>
+
+    {% if schedule %}
+
+        <table border="1" cellpadding="10">
+
+            <tr>
+
+                <th>Order</th>
+
+                <th>Activity</th>
+
+                <th>Start Time</th>
+
+                <th>End Time</th>
+
+                <th>Duration</th>
+
+            </tr>
+
+            {% for item in schedule %}
+
+                <tr>
+
+                    <td>
+                        {{ item.activity.order }}
+                    </td>
+
+                    <td>
+                        {{ item.activity.name }}
+                    </td>
+
+                    <td>
+                        {{ item.start_time }}
+                    </td>
+
+                    <td>
+                        {{ item.end_time }}
+                    </td>
+
+                    <td>
+                        {{ item.activity.duration }} minutes
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+        </table>
+
+    {% else %}
+
+        <p>No activities available for this event.</p>
+
+    {% endif %}
+
+    <br>
+
+    <a href="/events/">
+        ← Back to Events
+    </a>
+
+</body>
+
+</html>
